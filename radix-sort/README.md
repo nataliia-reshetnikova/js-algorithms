@@ -1,6 +1,6 @@
 <h2>Radix sort</h2>
 <p>It works differently from comparison sorts like bubble,insertion,quick,selection sorts, because it doesn't compare two values directly.</p>
-<p><strong>Note:</strong>Can work only with integer non-negative data</p>
+<p><strong>Note:</strong>This particular implementation can work only with integer non-negative data<p><p>It is possible to adapt the code for sorting negative and positive integers</p>
 
 <h4>RADIX SORT PSEUDOCODE</h4>
 <ul>
