@@ -98,7 +98,7 @@ class SinglyLinkedList {
       prev = node;
       node = next;
     }
-    return list;
+    return this;
   }
   print() {
     let arr = [];
