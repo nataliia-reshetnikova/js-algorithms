@@ -88,17 +88,65 @@ class DoublyLinkedList {
         counter--;
       }
     }
-    return element.val;
+    return element;
   }
 
-  set() {}
+  //updates an element at the given position with provided value
+  //@param {integer, *} position and value
+  //@return {boolean} true if the node was updated and false otherwise
+  set(position, val) {
+    let node = this.get(position);
+    if (node != null) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  //adding a node in a ddl at a certain position
+  //@param {integer, *} position and value
+  //@return {boolean} true if successful inserted, otherwise return false
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+    let prev = this.get(index - 1);
+    if (prev != null) {
+      let newNode = new Node(val);
+      newNode.next = prev.next;
+      prev.next.prev = newNode;
+      prev.next = newNode;
+      newNode.prev = prev;
+      this.length++;
+      return true;
+    }
+    return false;
+  }
+
+  //removes an item at the index
+  //@param {integer} index of the node to remove
+  //@return {node} return the removed node or undefined
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let removedNode = this.get(index);
+    let prev = removedNode.prev;
+    let next = removedNode.next;
+
+    prev.next = next;
+    next.prev = prev;
+    removedNode.prev = removedNode.next = null;
+    this.length--;
+    return removedNode;
+  }
 
   print() {
     let arr = [];
     let current = this.head;
     for (let i = 0; i < this.length; i++) {
       arr.push({ val: current.val, next: current.next, prev: current.prev });
-      //arr.push(current);
       current = current.next;
     }
     console.log(
@@ -110,29 +158,36 @@ class DoublyLinkedList {
   }
 }
 
-let myDLinkedList = new DoublyLinkedList();
-myDLinkedList.push(1);
-myDLinkedList.push(2);
-myDLinkedList.push(3);
-myDLinkedList.print();
-//console.log(myDLinkedList.pop());
-console.log(myDLinkedList.shift());
-myDLinkedList.print();
-//console.log(myDLinkedList.pop());
-console.log(myDLinkedList.shift());
-myDLinkedList.print();
-//console.log(myDLinkedList.pop());
-console.log(myDLinkedList.shift());
-myDLinkedList.print();
-//console.log(myDLinkedList.pop());
-console.log(myDLinkedList.shift());
-myDLinkedList.print();
-console.log(myDLinkedList.unshift("two"));
-console.log(myDLinkedList.unshift("one"));
-console.log(myDLinkedList.unshift("zero"));
-console.log(myDLinkedList.get(1)); //one
-console.log(myDLinkedList.get(0)); //zero
-console.log(myDLinkedList.push("three"));
-console.log(myDLinkedList.get(2)); //two
-console.log(myDLinkedList.get(3)); //three
-console.log(myDLinkedList.get(4)); //null
+let dll = new DoublyLinkedList();
+dll.push(1);
+dll.push(2);
+dll.push(3);
+dll.print();
+//console.log(dll.pop());
+console.log(dll.shift());
+dll.print();
+//console.log(dll.pop());
+console.log(dll.shift());
+dll.print();
+//console.log(dll.pop());
+console.log(dll.shift());
+dll.print();
+//console.log(dll.pop());
+console.log(dll.shift());
+dll.print();
+console.log(dll.unshift("two"));
+console.log(dll.unshift("one"));
+console.log(dll.unshift("zero"));
+console.log(dll.get(1)); //one
+console.log(dll.get(0)); //zero
+console.log(dll.push("three"));
+console.log(dll.get(2)); //two
+console.log(dll.get(3)); //three
+console.log(dll.get(4)); //null
+console.log(dll.set(4, "abcd")); //false
+console.log(dll.set(2, "two updated")); //true
+console.log(dll.insert(2, "inserted at two")); //true
+dll.print();
+console.log(dll.remove(2)); //inserted at two
+console.log(dll.remove(4)); //null
+dll.print();
