@@ -15,27 +15,16 @@
 <h4>Iterative</h4>
 <ul>
 <li>The function should accept a starting node</li>
-
 <li>Create a stack to help use keep track of vertices (use a list/array)</li>
-
 <li>Create a list to store the end result, to be returned at the very end</li>
-
 <li>Create an object to store visited vertices</li>
-
 <li>Add the starting vertex to the stack, and mark it visited</li>
-
 <li>While the stack has something in it:</li>
-
 <li>Pop the next vertex from the stack</li>
-
 <li>If that vertex hasn't been visited yet:</li>
-
 <li>​Mark it as visited</li>
-
 <li>Add it to the result list</li>
-
 <li>Push all of its neighbors into the stack</li>
-
 <li>Return the result array</li>
 </ul>
 
